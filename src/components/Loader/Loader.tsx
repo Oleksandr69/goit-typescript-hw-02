@@ -1,6 +1,9 @@
 import { BarLoader, PulseLoader } from "react-spinners";
 import ClipLoader from "react-spinners/ClipLoader";
 
+interface LoadPulse {
+  loading: boolean;
+}
 
 const override = {
   display: "block",
@@ -8,7 +11,7 @@ const override = {
   borderColor: "red",
 };
 
-const Loader = ({loading}) => {
+const Loader = ({ loading }: LoadPulse) => {
     return (
     <div>
       <PulseLoader

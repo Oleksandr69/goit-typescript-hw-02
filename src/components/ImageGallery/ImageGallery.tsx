@@ -1,7 +1,26 @@
 import css from './ImageGallery.module.css'
 import ImageCard from '../ImageCard/ImageCard';
 
-const ImageGallery = ({ cardList, onModal, saveImg }) => {
+interface MyImage {
+  id: string;
+  urls: {
+    regular: string;
+    small: string;
+  };
+  alt_description: string;
+  likes: string;
+  user: {
+    name: string;
+  }
+};
+
+interface MyList {
+  cardList: MyImage[], 
+  onModal: () => void;
+  saveImg: (value: MyImage) => void;
+}
+
+const ImageGallery = ({ cardList, onModal, saveImg }: MyList) => {
         
       return (<ul className={css.gallery}>
         {cardList.map((card) => {
@@ -12,7 +31,7 @@ const ImageGallery = ({ cardList, onModal, saveImg }) => {
                 saveImg={saveImg}
                 />
                 <div className={css.galleryDl}>
-                <div>
+                <div>/
                   <p className={css.galleryInfo}>author: {card.user.name}</p>
                 </div>
                 <div>

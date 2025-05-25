@@ -2,7 +2,7 @@ import css from './SearchBar.module.css'
 import { FaSearch } from "react-icons/fa";
 import toast, { Toaster } from 'react-hot-toast';
 
-const notify = (text) => toast(text);
+const notify = (text:string) => toast(text);
 
 const SearchBar = ({ onSearch }) => {
   

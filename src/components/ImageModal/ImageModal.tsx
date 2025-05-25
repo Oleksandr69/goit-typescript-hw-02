@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {KeyboardEvent} from 'react';
 import Modal from 'react-modal';
 import ReactDOM from 'react-dom';
 import { useEffect } from 'react';
@@ -6,16 +6,26 @@ import css from './ImageModal.module.css';
 
 Modal.setAppElement('#root');
 
-const ImageModal = ({ isOpen, onClose, children }) => {
+interface MyModal {
+    isOpen: boolean;
+    onClose: () => void;
+    children: React.ReactNode;
+    // handleKeyDown: (e: KeyboardEvent<HTMLInputElement>) => void;
+}
+interface KeyDown {
+    keyDown: (ev: KeyboardEvent<HTMLInputElement>) => void;
+}
+
+const ImageModal = ({ isOpen, onClose, children }: MyModal) => {
 
     useEffect(() => {
-        const handleKeyDown = e => {
+        const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
             if (e.key === 'Escape') onClose();
         };
-        document.addEventListener('keydown', handleKeyDown);
+        document.addEventListener('keydown', onClose);
 
         return () => {
-            document.removeEventListener('keydown', handleKeyDown);
+            document.removeEventListener('keydown', onClose);
         };
     }, [onClose]);
 
@@ -26,7 +36,7 @@ const ImageModal = ({ isOpen, onClose, children }) => {
             className={css.modalContent}
             closeTimeoutMS={300}
             onRequestClose={() => onClose()}
-            ariaHideApp="false"
+            ariaHideApp={false}
         >
             {children}
         </Modal>
