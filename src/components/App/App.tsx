@@ -34,15 +34,15 @@ function App() {
     }
   };
 
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState<string>('');
   const [result, setResult] = useState<Image[]>([]);
-  const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(false);
-  const [errBul, setErrBul] = useState(false);
-  const [modalIsOpen, setModalOpen] = useState(false);
-  const [pageMax, setPageMax] = useState(1);
+  const [page, setPage] = useState<number>(1);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [errBul, setErrBul] = useState<boolean>(false);
+  const [modalIsOpen, setModalOpen] = useState<boolean>(false);
+  const [pageMax, setPageMax] = useState<number>(1);
   const [image, setImage] = useState<Image | null>(null);
-  const [perPage, setPerPage] = useState(15);
+  const [perPage, setPerPage] = useState<number>(15);
   const notify = (text: string) => toast(text);
   
     

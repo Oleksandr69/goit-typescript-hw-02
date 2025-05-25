@@ -31,7 +31,7 @@ const ImageGallery = ({ cardList, onModal, saveImg }: MyList) => {
                 saveImg={saveImg}
                 />
                 <div className={css.galleryDl}>
-                <div>/
+                <div>
                   <p className={css.galleryInfo}>author: {card.user.name}</p>
                 </div>
                 <div>

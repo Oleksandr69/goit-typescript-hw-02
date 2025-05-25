@@ -1,22 +1,28 @@
 import css from './SearchBar.module.css'
+import React, { useState, FormEvent } from 'react';
 import { FaSearch } from "react-icons/fa";
 import toast, { Toaster } from 'react-hot-toast';
 
-const notify = (text:string) => toast(text);
+const notify = (text: string) => toast(text);
+interface MySearch {
+    onSearch: (item: string) => void;
+}
 
-const SearchBar = ({ onSearch }) => {
-  
-    const handleSubmit = (evt) => {
+const SearchBar = ({ onSearch }: MySearch) => {
+    const [search, setSearch] = useState<string>('');
+    const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
         evt.preventDefault();
-        const form = evt.target;
-        const topic = form.elements.topic.value;
+        // const form = evt.target;
+        // console.log(evt.target);
+        // const topic: string = form.elements.topic.value;
+        // // console.log(evt.target.elements)
 
-        if (topic.trim() === "") {
+        if (search.trim() === "") {
             notify('Please enter search term!');
             return;
         }
-        onSearch(topic);
-        form.reset();
+        onSearch(search);
+        setSearch('');
     };
 
     return (
@@ -27,9 +33,11 @@ const SearchBar = ({ onSearch }) => {
             <input
             type="text"
             autoComplete="off"
-            name="topic"
+            name="topic"    
             autoFocus
             placeholder="Search images and photos"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
             className = {css.inputSearch}
             />
             <button type="submit" className={ css.btnSearch}> <FaSearch/></button>
