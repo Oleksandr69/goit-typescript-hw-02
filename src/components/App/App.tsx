@@ -30,7 +30,7 @@ function App() {
     data: {
       total: number;
       total_pages: number;
-      results: Image;
+      results: Image[];
     }
   };
 
@@ -57,7 +57,7 @@ function App() {
         setPerPage(15);
         const data: MyData = await fetchData(search, page, perPage);
         setPageMax(data.data.total_pages);
-        setResult((prev) => [...prev, ...[data.data.results]]);
+        setResult((prev) => [...prev, ...data.data.results]);
 
       if (data.data.total_pages == 0) {
         notify("Sorry. Nothing found!");
